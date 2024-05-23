@@ -18,15 +18,18 @@ public class InventoryPage extends BasePage{
         driver = webDriver;
     }
 
-    public void waitPageIsLoaded(){
+    public InventoryPage waitPageIsLoaded(){
         waitElementIsClickable(addToCartBagLocator);
+        return this;
     }
 
-    public void addBagToCart(){
+    public InventoryPage addBagToCart(){
         driver.findElement(addToCartBagLocator).click();
+        return this;
     }
 
-    public void navigateToCart(){
+    public CartPage navigateToCart(){
         driver.findElement(cartLocator).click();
+        return new CartPage(driver);
     }
 }

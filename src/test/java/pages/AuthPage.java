@@ -23,28 +23,33 @@ public class AuthPage extends BasePage{
         driver = webDriver;
     }
 
-    public void open(){
+    public AuthPage open(){
         driver.get(url);
+        return this;
     }
 
-    public void waitPageIsLoaded(){
+    public AuthPage waitPageIsLoaded(){
         waitElementIsLoaded(usernameLocator);
+        return this;
     }
 
-    public void enterUsername(String username){
+    public AuthPage enterUsername(String username){
         WebElement usernameFld = driver.findElement(usernameLocator);
         usernameFld.clear();
         usernameFld.sendKeys(username);
+        return this;
     }
 
-    public void enterPassword(String password){
+    public AuthPage enterPassword(String password){
         WebElement passwordFld = driver.findElement(passwordLocator);
         passwordFld.clear();
         passwordFld.sendKeys(password);
+        return this;
     }
 
-    public void clickToLogin(){
+    public InventoryPage clickToLogin(){
         driver.findElement(loginLocator).click();
+        return new InventoryPage(driver);
     }
 
 

@@ -17,7 +17,7 @@ public class TestStore extends BaseTest {
     @Test
     public void addToCart(){
 
-        AuthPage authPage = new AuthPage(driver);
+/*        AuthPage authPage = new AuthPage(driver);
         authPage.open();
         authPage.waitPageIsLoaded();
         authPage.enterUsername("standard_user");
@@ -30,7 +30,19 @@ public class TestStore extends BaseTest {
         inventoryPage.navigateToCart();
 
         CartPage cartPage = new CartPage(driver);
-        cartPage.isBagIsPresent();
+        cartPage.isBagIsPresent();*/
+
+        AuthPage authPage = new AuthPage(driver);
+        authPage
+                .open()
+                .waitPageIsLoaded()
+                .enterUsername("standard_user")
+                .enterPassword("secret_sauce")
+                .clickToLogin()
+                .waitPageIsLoaded()
+                .addBagToCart()
+                .navigateToCart()
+                .isBagIsPresent();
 
     }
 }
