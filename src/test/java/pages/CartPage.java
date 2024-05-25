@@ -1,21 +1,18 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CartPage extends BasePage{
+import static com.codeborne.selenide.Selenide.$;
 
+public class CartPage{
 
     // Locators
-    By bagItemLocator = By.id("item_4_title_link");
-
-    public CartPage(WebDriver webDriver) {
-        super(webDriver);
-        driver = webDriver;
-    }
+    private final SelenideElement bagItem = $(By.id("item_4_title_link"));
 
     public void isBagIsPresent(){
-        isElementAppear(bagItemLocator, "Item is not present in the cart");
+        bagItem.should(Condition.appear);
     }
-
 }

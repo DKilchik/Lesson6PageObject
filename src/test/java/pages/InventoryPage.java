@@ -1,35 +1,32 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 
-public class InventoryPage extends BasePage{
-    WebDriver driver;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
-    By addToCartBagLocator = By.xpath("//button[@data-test='add-to-cart-sauce-labs-backpack']");
-    By cartLocator = By.className("shopping_cart_link");
+public class InventoryPage {
 
-    public InventoryPage(WebDriver webDriver){
-        super(webDriver);
-        driver = webDriver;
-    }
+    private final SelenideElement addToCart = $(By.xpath("//button[@data-test='add-to-cart-sauce-labs-backpack']"));
+    private final SelenideElement cartIcon = $(By.className("shopping_cart_link"));
+    ElementsCollection collection = $$(By.id("shopping_cart_link"));
 
     public InventoryPage waitPageIsLoaded(){
-        waitElementIsClickable(addToCartBagLocator);
+        addToCart.should(Condition.clickable);
         return this;
     }
 
     public InventoryPage addBagToCart(){
-        driver.findElement(addToCartBagLocator).click();
+        addToCart.click();
         return this;
     }
 
     public CartPage navigateToCart(){
-        driver.findElement(cartLocator).click();
-        return new CartPage(driver);
+        cartIcon.click();
+        return new CartPage();
     }
 }

@@ -1,7 +1,9 @@
 package tests;
 
+import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -32,9 +34,8 @@ public class TestStore extends BaseTest {
         CartPage cartPage = new CartPage(driver);
         cartPage.isBagIsPresent();*/
 
-        AuthPage authPage = new AuthPage(driver);
+        AuthPage authPage = new AuthPage();
         authPage
-                .open()
                 .waitPageIsLoaded()
                 .enterUsername("standard_user")
                 .enterPassword("secret_sauce")
